@@ -195,7 +195,7 @@ case "${ID:-} ${ID_LIKE:-}" in *ubuntu*|*debian*|*pop*) ;; *) die "unsupported O
 
 targets=("$@"); [ ${#targets[@]} -eq 0 ] && targets=("${TOOLS[@]}")
 log "OS: ${PRETTY_NAME}; backups -> $BACKUP_DIR"
-[ -n "$SUDO" ] && $SUDO -v
+[ -n "$SUDO" ] && { $SUDO -n true 2>/dev/null || $SUDO -v; }
 apt_update_once
 apt_install git curl stow ca-certificates gpg
 
