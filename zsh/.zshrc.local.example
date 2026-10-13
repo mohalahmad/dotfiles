@@ -1,0 +1,3 @@
+# Copy to ~/.zshrc.local (gitignored). Machine-specific settings and secrets go here.
+# export OPENAI_API_KEY="..."
+# export GITHUB_TOKEN="..."

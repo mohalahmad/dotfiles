@@ -1,0 +1,26 @@
+# Secrets / machine-local
+.zshrc.local
+.gitconfig.local
+*.local
+.env
+id_*
+*.pem
+*.key
+known_hosts*
+.ssh/
+# Generated / caches
+*.log
+*.bak
+*.bak.*
+*.zwc
+.zcompdump*
+.zsh_history
+__pycache__/
+.DS_Store
+# Plugin / package dirs (installed by install scripts)
+.oh-my-zsh/
+**/lazy/
+**/.local/share/nvim/
+node_modules/
+.claude/settings.local.json
+.claude/history.jsonl

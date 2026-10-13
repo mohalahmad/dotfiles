@@ -1,0 +1,17 @@
+anthropic.claude-code
+arcticicestudio.nord-visual-studio-code
+docker.docker
+eamodio.gitlens
+github.vscode-github-actions
+golang.go
+hashicorp.terraform
+ms-azuretools.vscode-containers
+ms-azuretools.vscode-docker
+ms-vscode-remote.remote-containers
+nefrob.vscode-just-syntax
+omartawfik.github-actions-vscode
+openai.chatgpt
+openai.codex-audio
+redhat.vscode-yaml
+rust-lang.rust-analyzer
+tim-koehler.helm-intellisense

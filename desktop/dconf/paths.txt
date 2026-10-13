@@ -1,0 +1,9 @@
+desktop/interface=/org/gnome/desktop/interface/
+desktop/background=/org/gnome/desktop/background/
+desktop/wm/preferences=/org/gnome/desktop/wm/preferences/
+shell=/org/gnome/shell/
+shell/extensions=/org/gnome/shell/extensions/
+mutter=/org/gnome/mutter/
+nautilus=/org/gnome/nautilus/
+desktop/input-sources=/org/gnome/desktop/input-sources/
+settings-daemon/plugins/power=/org/gnome/settings-daemon/plugins/power/
