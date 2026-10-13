@@ -183,7 +183,16 @@ install_desktop() {
     rm -rf "$tmp"
   fi
   [ -d "$HOME/.icons/WinXPSVG-plasma5up-scalable-icontheme-blackysgate.de" ] || warn "MANUAL: WinXP icon theme not present (see desktop/README.md)"
-  gnome-extensions list 2>/dev/null | grep -qx 'Vitals@CoreCoding.com' || warn "MANUAL: install the Vitals GNOME extension via Extension Manager"
+  if [[ "${XDG_CURRENT_DESKTOP:-}" == *COSMIC* ]]; then
+    # Vitals is GNOME-only; on COSMIC use the sysinfo panel applet instead.
+    local applet=io.github.cosmic_utils.sysinfo-applet
+    if flatpak info "$applet" >/dev/null 2>&1; then skip "COSMIC sysinfo applet"; else
+      flatpak install -y --user cosmic "$applet" && ok "COSMIC sysinfo applet" || warn "COSMIC applet install failed"
+    fi
+    warn "MANUAL: add 'System Monitor' to the panel (COSMIC Settings > Desktop > Panel > Configure panel applets)"
+  else
+    gnome-extensions list 2>/dev/null | grep -qx 'Vitals@CoreCoding.com' || warn "MANUAL: install the Vitals GNOME extension via Extension Manager"
+  fi
 }
 
 # ---------------------------------------------------------------- main

@@ -2,7 +2,7 @@
 Type=Application
 Name=Conky System Monitor
 Comment=Desktop system stats widget
-Exec=sh -c 'conky -c "$HOME/.config/conky/conky.conf"'
+Exec=conky
 Icon=utilities-system-monitor
 Terminal=false
 X-GNOME-Autostart-enabled=true
