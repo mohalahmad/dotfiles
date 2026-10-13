@@ -196,6 +196,13 @@ install_desktop() {
       mkdir -p "$BACKUP_DIR" && cp "$wings" "$BACKUP_DIR/cosmic-plugins_wings"
       sed -i "0,/^], \[\$/s//&\n    \"$applet\",/" "$wings" && ok "added applet to the top panel"
     fi
+    # Copied, not stowed: the flatpak sandbox cannot follow a symlink into the repo.
+    local tpl="$HOME/.config/cosmic/io.github.cosmic-utils.cosmic-ext-applet-sysinfo/v1/template"
+    if [ -f "$tpl" ] && [ ! -L "$tpl" ] && cmp -s "$REPO/desktop/cosmic/sysinfo-template" "$tpl"; then skip "applet template"; else
+      mkdir -p "$(dirname "$tpl")"
+      [ -e "$tpl" ] && [ ! -L "$tpl" ] && mkdir -p "$BACKUP_DIR" && command cp "$tpl" "$BACKUP_DIR/sysinfo-template"
+      command rm -f "$tpl" && command cp "$REPO/desktop/cosmic/sysinfo-template" "$tpl" && ok "applet template"
+    fi
   else
     gnome-extensions list 2>/dev/null | grep -qx 'Vitals@CoreCoding.com' || warn "MANUAL: install the Vitals GNOME extension via Extension Manager"
   fi
