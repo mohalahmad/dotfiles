@@ -189,7 +189,13 @@ install_desktop() {
     if flatpak info "$applet" >/dev/null 2>&1; then skip "COSMIC sysinfo applet"; else
       flatpak install -y --user cosmic "$applet" && ok "COSMIC sysinfo applet" || warn "COSMIC applet install failed"
     fi
-    warn "MANUAL: add 'System Monitor' to the panel (COSMIC Settings > Desktop > Panel > Configure panel applets)"
+    local wings="$HOME/.config/cosmic/com.system76.CosmicPanel.Panel/v1/plugins_wings"
+    if [ ! -f "$wings" ]; then warn "MANUAL: add 'System Monitor' to the panel (COSMIC Settings > Desktop > Panel)"
+    elif grep -q "$applet" "$wings"; then skip "applet in panel"
+    else
+      mkdir -p "$BACKUP_DIR" && cp "$wings" "$BACKUP_DIR/cosmic-plugins_wings"
+      sed -i "0,/^], \[\$/s//&\n    \"$applet\",/" "$wings" && ok "added applet to the top panel"
+    fi
   else
     gnome-extensions list 2>/dev/null | grep -qx 'Vitals@CoreCoding.com' || warn "MANUAL: install the Vitals GNOME extension via Extension Manager"
   fi
